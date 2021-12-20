@@ -1,0 +1,22 @@
+{
+  "name": "cross-origin",
+  "version": "1.0.0",
+  "description": "ajax",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "respository": "https://github.com/MarukoMa/ajax.git",
+  "keywords": [
+    "ajax"
+  ],
+  "author": "MarukoMa",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.1.1",
+    "nodemon": "^2.0.15"
+  }
+}
