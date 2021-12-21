@@ -21,6 +21,9 @@ router.put('/users/:id', (ctx) => {
   const { id } = ctx.params;
   const { name,idNumber} = ctx.request.body;
   let user = listData.find(item => item.id == id);
+  console.log(user)
+  console.log(id)
+  console.log(ctx.request.body)
   if (user) {
       user.name = name;
       user.idNumber = idNumber;

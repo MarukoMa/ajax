@@ -1,6 +1,7 @@
 const koa = require('koa')
 const app = new koa()
 const koaCors = require('../koaCors')
+const koaRouter = require('koa-router')
 const router = new koaRouter()
 const BodyParser = require('koa-bodyparser');
 const bodyparser= new BodyParser();
@@ -29,6 +30,7 @@ router.post('/users',ctx => {
           msg:"新增失败"
       }
   }
+  console.log(name)
   ctx.body = JSON.stringify(resData)
 })
 app.listen(3000,()=>{
