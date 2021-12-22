@@ -16,6 +16,7 @@
               type:"get",
               url:"http://localhost:2000/users/3",
               async:true,
+              delay:100,
               success:function(data){
                   document.getElementById('showCont').innerHTML = JSON.stringify(data)
               },
