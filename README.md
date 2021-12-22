@@ -1,6 +1,6 @@
 # ajax
 笔者手动封装ajax请求，主要功能包含  
-* 支持 method（get/post/delete/put  
+* 支持 method（get/post/delete/put)
 *  支持设置delay（延迟请求时间）、abort（取消请求）、timeout（超时的取消请求）
 
 
@@ -12,8 +12,8 @@
 * async 请求均为异步请求,默认为true
 * timeout  设置超时的取消请求,默认为ms,初始值为0
 * delay 设置延迟请求时间,,默认为ms,初始值为0
-
-
+* success 成功回调函数
+* error 失败回调函数
 ### Example
 ```javascript
   ajax({
