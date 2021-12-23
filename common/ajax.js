@@ -1,8 +1,6 @@
 //创建xhr对象
 function creatXMLObject(){
-     let xhr =  null;
-     xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHttp');  //ie兼容性处理
-     return xhr
+     return window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHttp');  //ie兼容性处理
 }
 //参数处理
 function formatParams(data) {
@@ -15,15 +13,17 @@ function formatParams(data) {
 //请求处理
 function sendHandle(opts,xhr){
     const {type,url,async,delay} = opts
-    let params = formatParams(opts.data)
+    const params = formatParams(opts.data)
     let reqUrl = url
-    if(type == "get"){reqUrl += ('?' + params)}
-    xhr.open(type,reqUrl,async)  //初始化 HTTP 请求参数
-    if(type == "post"){ xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")}
-   
+    if(type == "get"){
+        url += ('?' + params)
+    }
+    xhr.open(type,url,async)  //初始化 HTTP 请求参数
+    if(type == "post"){ 
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+    }
     //延时设置
-    let delayRun = delay > 0 ? true : false
-    if(delayRun){
+    if(delay > 0){
         setTimeout(function(){
             xhr.send(type == "get" ? null : params) //发送请
         },delay)
