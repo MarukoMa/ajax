@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ajax",
   "scripts": {
+    "jsopn-server":"nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "respository": "https://github.com/MarukoMa/ajax.git",

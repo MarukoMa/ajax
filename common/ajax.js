@@ -156,7 +156,7 @@ function jsonp(opts) {
         script.src = `${opts.url}?${params}&callback=${callbackName}`
     }
     //超时处理
-    timeoutFun(opts, xhr, callback, script)
+    timeoutFun(opts, null, callback, script)
 }
 /*
 * 超时参数设置
