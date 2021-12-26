@@ -14,12 +14,10 @@
     <script>
           ajax({
               type:"POST",
-              url:"http://localhost:3000/users",
+              url:"http://localhost:4000/users",
               data:{name:'小新',idNumber:"321234202102213456"},
               async:true,
               dataType: "json",
-              timeout:0,
-              delay:30,
               success:function(data){
                   document.getElementById('showCont').innerHTML = JSON.stringify(data)
               },

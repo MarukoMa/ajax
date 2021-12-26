@@ -1,7 +1,7 @@
 const koa = require('koa')
 const app = new koa()
 const koaRouter = require('koa-router')
-const routerKoaCors = require('../cors/koaCors')
+const routerKoaCors = require('../koaCors')
 const router = new koaRouter()
 const BodyParser = require('koa-bodyparser');
 const bodyparser= new BodyParser();

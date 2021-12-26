@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>jsonp跨域</title>
+   <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <h1>jsonp跨域</div>
+    <div id="showCont"></div>
+    <script src="../common/ajax.js"></script>
+    <script>
+      ajax({
+        url:"http://localhost:2000/users/list",
+        type:"GET",
+        data:{pageSize:4,currentPage:3},
+        dataType:"JSONP",
+        success:function(data){
+           document.getElementById('showCont').innerHTML = JSON.stringify(data)
+        },
+        error:function(){
+            console.log('err')
+        }
+      })
+    </script>
+ 
+</body>
+</html>
