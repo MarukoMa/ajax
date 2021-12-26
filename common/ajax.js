@@ -167,7 +167,7 @@ function jsonp(opts) {
 let options = {
     timeoutFlag: null, //超时标识
     timeoutBool: false //是否请求超时
-},
+}
 
 /*
 * 超时请求
