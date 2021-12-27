@@ -23,7 +23,7 @@ function formatParams(data) {
 function sendHandle(opts,xhr) {
    const {type, async, delay, header} = opts
    let { url } = opts;
-   const params = opts.data !== null && formatParams(opts.data)
+   const params = opts.data && formatParams(opts.data)
    if(type.toLowerCase() == "get") {
        url += ('?' + params)
    }
@@ -68,7 +68,6 @@ function ajax(opts) {
        delay:null,
        header:null,
        dataType:"json",
-       jsonp:"callback",
        jsonpCallback:"",
        success:function(){},
        error:function(){}
@@ -92,12 +91,18 @@ function ajaxRequset(opts) {
     //请求处理
     sendHandle(opts, xhr)
     //超时设置
-    timeoutFun(opts, xhr)
+    let timeoutBool = false;
+    const timeoutFlag = 
+        opts.timeout && 
+        setTimeout(function() {
+            timeoutBool = true;
+            xhr && xhr.abort();
+        }, opts.timeout);
     //监听
     xhr.onreadystatechange = function() {
         //超时处理
-        if(options.timeoutBool) {return}
-        clearTimeout(options.timeoutFlag)
+        if(timeoutBool) {return}
+        clearTimeout(timeoutFlag)
         //延迟请求
         if(xhr.readyState === 4) {  //HTTP响应全部接收
             if(xhr.status >= 200 && xhr.status < 300) {
@@ -134,15 +139,15 @@ function jsonp(opts) {
     }
     //创建script 标签并加入页面中
     //设置回调函数的名称
-    const callbackName = opts.jsonpCallback || ('jsonp' + Math.round(Math.random()*1000000))
-    const params = opts.data !== null && formatParams(opts.data)
+    const callbackName = opts.jsonpCallback || ('jsonp_callback_' + jsonpCallbackName(10))
+    const params = opts.data && formatParams(opts.data)
     const head = document.getElementsByTagName('head')[0];
     const script = document.createElement('script');
     head.appendChild(script)
     //创建jsonp 回调函数
      window[callbackName] = function(json) {
         head.removeChild(script)
-        clearTimeout(options.timeoutFlag)
+        clearTimeout(timeoutFlag)
         window[callbackName] = null
         opts.success && opts.success(json);
      }
@@ -156,33 +161,19 @@ function jsonp(opts) {
         script.src = `${opts.url}?${params}&callback=${callbackName}`
     }
     //超时处理
-    timeoutFun(opts, null, callback, script)
-}
-/*
-* 超时参数设置
-* @param timeoutFlag  超时标识
-* @param timeoutBool  是否请求超时
-*/
-
-let options = {
-    timeoutFlag: null, //超时标识
-    timeoutBool: false //是否请求超时
-}
-
-/*
-* 超时请求
-* @param opts  请求传参
-*/
-function timeoutFun(opts, xhr, callback, script) {
-    if (opts.timeout !== undefined) {
-        options.timeoutFlag = setTimeout(function() {
-            if (opts.dataType === "jsonp") {
-                delete window[callback];
-                document.body.removeChild(script);
-            } else {
-                options.timeoutBool = true;
-                xhr && xhr.abort();
-            }
+    const timeoutFlag = 
+        opts.timeout && 
+        setTimeout(function() {
+            delete window[callbackName];
+            head.removeChild(script);
         }, opts.timeout);
+}
+function jsonpCallbackName(long) {
+    const length = long || 32;
+    const initData = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let name = "";
+    for(let i=0; i < length; i++){
+        name += initData.charAt(Math.floor(Math.random()*length))
     }
+    return name
 }

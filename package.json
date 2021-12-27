@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "ajax",
   "scripts": {
-    "jsopn-server":"nodemon server",
+    "jsopn-server":"nodemon ./server/jsonp/index.js",
+    "restful-server":"nodemon ./server/restful/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "respository": "https://github.com/MarukoMa/ajax.git",
   "keywords": [
-    "ajax"
+    "ajax",
+    "jsonp"
   ],
   "author": "MarukoMa",
   "license": "ISC",

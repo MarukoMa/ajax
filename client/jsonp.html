@@ -8,7 +8,7 @@
    <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon" />
 </head>
 <body>
-    <h1>jsonp跨域</div>
+    <h1>jsonp跨域</h1>
     <div id="showCont"></div>
     <script src="../common/ajax.js"></script>
     <script>
@@ -17,6 +17,7 @@
         type:"GET",
         data:{pageSize:4,currentPage:3},
         dataType:"JSONP",
+        timeout:10,
         success:function(data){
            document.getElementById('showCont').innerHTML = JSON.stringify(data)
         },
