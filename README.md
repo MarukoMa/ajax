@@ -7,7 +7,7 @@
 ## options
 
 * type  可设置get post put delete四种类型,默认为get方式  
-* url   请求地址
+* url   请求地址 
 * data  页发送到服务器的数据,get请求中将附加在 URL后。
 * dataType 设置数据交换格式,默认值为json
 * async 请求均为异步请求,默认为true
@@ -35,4 +35,6 @@
   })
 
 ```
-
+### tips:  两种形式封装,调用传参方式相同,可选其一
+* ajax.js 为普通函数式封装
+* modelAjax.js 使用构造函数封装

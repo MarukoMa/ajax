@@ -10,19 +10,18 @@
 <body>
     <h1>jsonp跨域</h1>
     <div id="showCont"></div>
-    <script src="../common/ajax.js"></script>
+    <script src="../common/modelaAjax.js"></script>
     <script>
       ajax({
         url:"http://localhost:2000/users/list",
         type:"GET",
         data:{pageSize:4,currentPage:3},
         dataType:"JSONP",
-        timeout:10,
         success:function(data){
            document.getElementById('showCont').innerHTML = JSON.stringify(data)
         },
-        error:function(){
-            console.log('err')
+        error:function(err){
+            console.log(err)
         }
       })
     </script>

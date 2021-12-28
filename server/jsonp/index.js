@@ -1,7 +1,7 @@
 const koa = require('koa')
 const app = new koa()
 const koaRouter = require('koa-router')
-const router = new koaRouter({prefix:"/users"}) //注册地址 '/'相当于’/users‘
+const router = new koaRouter() 
 const listData = require('../mock/lists.json')
 const logger = require('koa-logger');
 
@@ -9,7 +9,7 @@ app.use(logger());  //查看日志
 app.use(router.routes());   /*启动路由*/
 app.use(router.allowedMethods());
 
-router.get('/list',ctx => {
+router.get('/users/list',ctx => {
     let jsonpStr = ''
     const callbackName = ctx.query.callback || "callback"
     const pageSize = Number(ctx.query.pageSize)   //每页展示条数
@@ -34,5 +34,5 @@ router.get('/list',ctx => {
     ctx.body = jsonpStr
 })
 app.listen(2000,()=>{
-    console.log('http://localhost:2000')
+    console.log('http://localhost:2000/users/list?pageSize=4&currentPage=2&callback=jsopn_callback_00011')
 })
