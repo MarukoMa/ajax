@@ -99,7 +99,7 @@ function Ajax(opts) {
     if(this.opts.delay > 0) {
         setTimeout(function() {
            this.send()
-        },delay)
+        },this.opts.delay)
     }else {
         this.send()
     }
